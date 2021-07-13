@@ -40,6 +40,7 @@ type Feed struct {
 	Crawler                     bool      `json:"crawler"`
 	BlocklistRules              string    `json:"blocklist_rules"`
 	KeeplistRules               string    `json:"keeplist_rules"`
+	UrlRewriteRules             string    `json:"urlrewrite_rules"`
 	UserAgent                   string    `json:"user_agent"`
 	Cookie                      string    `json:"cookie"`
 	Username                    string    `json:"username"`
@@ -134,6 +135,7 @@ type FeedCreationRequest struct {
 	RewriteRules                string `json:"rewrite_rules"`
 	BlocklistRules              string `json:"blocklist_rules"`
 	KeeplistRules               string `json:"keeplist_rules"`
+	UrlRewriteRules             string `json:"urlrewrite_rules"`
 }
 
 // FeedModificationRequest represents the request to update a feed.
@@ -145,6 +147,7 @@ type FeedModificationRequest struct {
 	RewriteRules                *string `json:"rewrite_rules"`
 	BlocklistRules              *string `json:"blocklist_rules"`
 	KeeplistRules               *string `json:"keeplist_rules"`
+	UrlRewriteRules             *string `json:"urlrewrite_rules"`
 	Crawler                     *bool   `json:"crawler"`
 	UserAgent                   *string `json:"user_agent"`
 	Cookie                      *string `json:"cookie"`
@@ -181,6 +184,10 @@ func (f *FeedModificationRequest) Patch(feed *Feed) {
 
 	if f.KeeplistRules != nil {
 		feed.KeeplistRules = *f.KeeplistRules
+	}
+
+	if f.UrlRewriteRules != nil {
+		feed.UrlRewriteRules = *f.UrlRewriteRules
 	}
 
 	if f.BlocklistRules != nil {
